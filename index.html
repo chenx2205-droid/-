@@ -262,10 +262,10 @@
         }
     </style>
 </head>
- <body>
-     <img src="long_pic_1769824757515095_16775936456932.jpg" alt="活动长图" style="width:100%; display:block; margin:0 auto;">
-     <div class="activity-title">积分白嫖无门槛 · 幸运大转盘</div>
-     <div class="activity-subtitle">签到领积分 | 多玩翻倍 | 好礼随心兑</div>
+<body>
+    <div class="activity-title">积分白嫖无门槛 · 幸运大转盘</div>
+    <div class="activity-subtitle">签到领积分 | 多玩翻倍 | 好礼随心兑</div>
+    
     <div class="input-wrapper">
         <div class="remain-times" id="remainText">请输入账号并提交</div>
         <div class="account-group">
@@ -273,6 +273,7 @@
             <button class="submit-btn" id="submitBtn">提交账号</button>
         </div>
     </div>
+    
     <div class="lottery-container">
         <div class="lottery-wheel" id="wheel">
             <div class="wheel-item" style="transform:rotate(0deg)"><span>差一点点</span></div>
@@ -309,7 +310,7 @@
         <audio id="fireworkAudio" src="https://cdn.freesound.org/previews/427/427490_8250102-lq.mp3" preload="auto">
         <audio id="confettiAudio" src="https://cdn.freesound.org/previews/442/442340_9373373-lq.mp3" preload="auto">
     </div>
-    </body>
+    
     <script>
         // 已植入你的Google表格ID，无需修改
         const SHEET_ID = "16kXTKrllRtbfMrD60Grqd0f9ux_L-QqYI-QPfJ30zu0";
@@ -406,11 +407,11 @@
             rotateAudio.play().catch(err => console.log("音效播放需开启音量"));
             const prizes = Object.keys(prizeAngle);
             const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
-            currentAngle += 360 * 8 + prizeAngle[randomPrize];
+            currentAngle += 360 * 25 + prizeAngle[randomPrize];
             const targetAngle = currentAngle;
             isRotating = true;
             drawBtn.disabled = true;
-            wheel.style.transition = 'transform 15s cubic-bezier(0.2, 0.8, 0.3, 1)';
+            wheel.style.transition = 'transform 23s cubic-bezier(0.2, 0.8, 0.3, 1)';
             wheel.style.transform = `rotate(${targetAngle}deg)`;
             
             setTimeout(() => {
@@ -422,8 +423,9 @@
                 
                 if (randomPrize === "差一点点") {
                     loseAudio.currentTime = 0;
-                    loseAudio.play().catch(err => console.log("音效播放需开启音量"));
-                    showModal("再接再厉", "差一点点就中奖啦！积分多攒多抽，下次必中～", "🙁");
+                    loseAudio.play().catch(() => {}); // 播放音效（失败也不提示）
+showModal("再接再厉", "差一点点就中奖啦！积分多攒多抽，下次必中～", "🙁"); // 直接弹提示
+
                 } else {
                     startConfetti();
                     confettiAudio.currentTime = 0;
@@ -445,7 +447,7 @@
                 if (newTimes > 0) {
                     drawBtn.disabled = false;
                 }
-            }, 15000);
+            }, 23000);
         });
         
         closeBtn.addEventListener('click', () => {
